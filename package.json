@@ -1,0 +1,22 @@
+{
+  "name": "fractaliciousbot",
+  "version": "1.0.0",
+  "description": "An accompanying TwitterBot to Fractalicio.us",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fractalicio.us",
+    "fractals",
+    "webgl",
+    "twitter",
+    "bot"
+  ],
+  "author": "Michael Hazani <michael@michaelhazani.com> (http://michaelhazani.com)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3",
+    "webshot-phantom2": "^1.0.4"
+  }
+}
