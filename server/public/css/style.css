@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+#github a {
+font-family: 'Khula', sans-serif;
+    position:absolute;
+    color: white;
+    text-decoration: none;
+    right: 10px;
+    top: 10px;
+}

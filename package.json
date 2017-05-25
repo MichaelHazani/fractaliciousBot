@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "An accompanying TwitterBot to Fractalicio.us",
   "main": "src/app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "fractalicio.us",
     "fractals",
@@ -16,7 +13,15 @@
   "author": "Michael Hazani <michael@michaelhazani.com> (http://michaelhazani.com)",
   "license": "MIT",
   "dependencies": {
+    "atob": "^2.0.3",
+    "base64-img": "^1.0.3",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "webshot-phantom2": "^1.0.4"
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
+    "twit": "^2.2.5"
+  },
+  "devDependencies": {
+    "supervisor": "^0.12.0"
   }
 }
