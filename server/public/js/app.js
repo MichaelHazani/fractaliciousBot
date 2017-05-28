@@ -44816,22 +44816,26 @@ var init = function init() {
         ftArr.push(ft);
     }
 
-//send screenshot
-var randTime = Math.floor(30 - Math.random() * (30-9));
-console.log(randTime);
-setTimeout(function(){
-	var scrshot = renderer.domElement.toDataURL( 'image/png' );
-	var scrDec = JSON.stringify(btoa(scrshot));
-$.ajax({
-	method: "POST",
-	url: "/postImage",
-    data: {'imageBase64': scrDec},
-	dataType: "json"
-}, function(result) {
-	console.log(result);
-    // callback sth as you like 
-});
-}, randTime * 1000);
+//send/save screenshot helpers
+
+//create random growth time helper
+// var randTime = Math.floor(30 - Math.random() * (30-9));
+//(to be potentially put in setTimeout counter if flower doesn't autogenerate)
+// setTimeout(function(){
+// 	var scrshot = renderer.domElement.toDataURL( 'image/png' );
+// 	var scrDec = JSON.stringify(btoa(scrshot));
+// $.ajax({
+// 	method: "POST",
+// 	// url: "/postImage",	
+// 	// url: "/saveImage",
+//     data: {'imageBase64': scrDec},
+// 	dataType: "json"
+// }, function(result) {
+// 	console.log(result);
+
+// });
+// 	location.reload();
+// }, 3000);
 
 };
 
