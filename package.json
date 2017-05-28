@@ -16,8 +16,11 @@
     "atob": "^2.0.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "install": "^0.10.1",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
+    "newrelic": "^1.39.1",
+    "npm": "^4.6.1",
     "twit": "^2.2.5"
   },
   "devDependencies": {
