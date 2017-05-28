@@ -2,13 +2,11 @@ var express = require('express')
 var app = express();
 var moment = require('moment-timezone');
 var bodyParser = require('body-parser');
-var base64Img = require('base64-img');
 var http = require('http');
 var atob = require('atob');
 var Twit = require('twit');
 var creds = require('./ignore/creds.js');
 var fs = require('fs');
-var Browser = require('zombie');
 
 var T = new Twit({
     consumer_key: creds.consumer_key,
