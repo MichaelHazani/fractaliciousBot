@@ -24,6 +24,11 @@ app.get('/', function (req, res) {
     // res.write("all systems nominal!");
 });
 
+//alive notice
+T.post('statuses/update', { status: "I'm awake!" }, function (err, data, response) {
+    console.log(data)
+})
+
 //actual tweetBot logic (from static images)
 var counter = 0;
 setInterval(function () {
@@ -51,7 +56,7 @@ setInterval(function () {
     //raise counter
     counter < 356 ? counter++ : counter = 0;
 
-}, 86400);
+}, 86400000);
 
 //post image to twitter
 // app.post('/postImage', function (req, res) {
