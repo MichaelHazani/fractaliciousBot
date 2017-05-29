@@ -26,9 +26,9 @@ app.get('/', function (req, res) {
 });
 
 //alive notice
-T.post('statuses/update', { status: "I'm awake!" }, function (err, data, response) {
-    console.log(data)
-})
+// T.post('statuses/update', { status: "I'm awake!" }, function (err, data, response) {
+//     console.log(data)
+// })
 
 //actual tweetBot logic (from static images)
 var counter = 0;
