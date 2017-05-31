@@ -31,46 +31,11 @@ app.get('/', function (req, res) {
 // })
 
 //actual tweetBot logic (from static images)
-var counter = 0;
-setInterval(function () {
-    var now = moment().tz('America/Los_Angeles').format('dddd[,] MMMM Do[,] YYYY');
-
-    var b64content = fs.readFileSync(__dirname + '/shots/flower' + counter + '.png', { encoding: 'base64' })
-
-    T.post('media/upload', { media: b64content }, function (err, data, response) {
-        var mediaIdStr = data.media_id_string;
-        var altText = "Another photo by fractalicio.us bot!"
-        var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
-
-        T.post('media/metadata/create', meta_params, function (err, data, response) {
-            if (!err) {
-                var params = { status: now, media_ids: [mediaIdStr] }
-                T.post('statuses/update', params, function (err, data, response) {
-                })
-            }
-        })
-        console.log("error: " + err);
-        console.log("data: " + data);
-        console.log("response: ");
-        console.log(response);
-    })
-    //raise counter
-    counter < 356 ? counter++ : counter = 0;
-
-}, 86400000);
-
-//post image to twitter
-// app.post('/postImage', function (req, res) {
-//     console.log('received img data');
-
+// var counter = 0;
+// setInterval(function () {
 //     var now = moment().tz('America/Los_Angeles').format('dddd[,] MMMM Do[,] YYYY');
 
-//load live data
-// var base64Data = atob(req.body['imageBase64']);
-// var edited64 = base64Data.replace(/^data:image\/\w+;base64,/, "");
-
-// alternatively, load png
-//     var b64content = fs.readFileSync('./1.png', { encoding: 'base64' })
+//     var b64content = fs.readFileSync(__dirname + '/shots/flower' + counter + '.png', { encoding: 'base64' })
 
 //     T.post('media/upload', { media: b64content }, function (err, data, response) {
 //         var mediaIdStr = data.media_id_string;
@@ -89,21 +54,46 @@ setInterval(function () {
 //         console.log("response: ");
 //         console.log(response);
 //     })
-//     res.send("done");
-// });
+//     //raise counter
+//     counter < 356 ? counter++ : counter = 0;
 
-//save directly from front end call (for helper)
-// var counter = 0;
+// }, 86400000);
 
-// app.post('/saveImage', function (req, res) {
-//     console.log('received data to save');
-//     var base64Data = atob(req.body['imageBase64']);
-//     var edited64 = base64Data.replace(/^data:image\/\w+;base64,/, "");
-//     require("fs").writeFile(__dirname + "/shots/flower" + counter + ".png", edited64, 'base64', { flag: 'w' }, function (err) {
-//         console.log(err);
-//     });
-//     counter++;
-// })
+
+setInterval(function () {
+    //get time
+    var now = moment().tz('America/Los_Angeles').format('dddd[,] MMMM Do[,] YYYY');
+
+    //get random file
+    var filesInFolder = fs.readdirSync(__dirname + '/shots');
+    var randomIndex = Math.floor(Math.random() * (filesInFolder.length - 1));
+    var randFile = "flower" + randomIndex.toString() + ".png";
+
+    var b64content = fs.readFileSync(__dirname + '/shots/' + randFile, { encoding: 'base64' })
+
+    T.post('media/upload', { media: b64content }, function (err, data, response) {
+        var mediaIdStr = data.media_id_string;
+        var altText = "Another photo by fractalicio.us bot!"
+        var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
+
+        T.post('media/metadata/create', meta_params, function (err, data, response) {
+            if (!err) {
+                var params = { status: now, media_ids: [mediaIdStr] }
+                T.post('statuses/update', params, function (err, data, response) {
+                })
+            }
+        })
+        console.log("error: " + err);
+        console.log("data: " + data);
+        console.log("response: ");
+        console.log(response);
+
+        //move file to "used"
+        fs.rename(__dirname + '/shots/' + randFile, __dirname + "/shots/used/" + randFile);
+    })
+}, 86400000);
+
+
 
 app.listen(process.env.PORT || 3000, function () {
     console.log('Example app listening on port 3000!');
